@@ -1,4 +1,4 @@
-import { Controller, Post, Body, Get, Param, Put, Delete, UseGuards, UsePipes, ValidationPipe, NotFoundException, InternalServerErrorException, Logger } from '@nestjs/common';
+import { Controller, Post, Body, Get, Param, Put, Delete, UseGuards, UsePipes, ValidationPipe, InternalServerErrorException, Logger } from '@nestjs/common';
 import { UsersService } from './user.service';
 import * as bcrypt from 'bcrypt';
 import { Roles } from '../auth/roles.decorator';

@@ -1,7 +1,6 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from './user.entity';
-import { UserRepository } from './user.repository';
 import * as bcrypt from 'bcrypt';
 import { UserNotFoundException } from '../common/exceptions/user-not-found.exception';
 import { IUser } from './user.interface';
@@ -33,12 +32,12 @@ export class UsersService {
   }
 
   async update(id: number, userData: Partial<User>): Promise<IUser> {
-    const user = await this.findById(id); // Check if user exists
+    const user = await this.findById(id);
     if (userData.password) {
-      userData.password = await bcrypt.hash(userData.password, 10); // Hash the new password if provided
+      userData.password = await bcrypt.hash(userData.password, 10);
     }
-    await this.userRepository.update(id, userData); // Update the user in the repository
-    return this.findById(id); // Return the updated user
+    await this.userRepository.update(id, userData);
+    return this.findById(id);
   }
 
   async delete(id: number): Promise<void> {

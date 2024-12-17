@@ -73,7 +73,7 @@ describe('AuthService', () => {
 
   describe('login', () => {
     beforeEach(() => {
-      jest.clearAllMocks(); // Clear any previous mocks
+      jest.clearAllMocks();
     });
 
     it('should successfully log in a user and return a token', async () => {
@@ -81,9 +81,9 @@ describe('AuthService', () => {
       const loginDto = { email: user.email, password: 'password' };
       mockUsersService.findByEmail.mockResolvedValue(user);
       jest.spyOn(bcrypt, 'compare').mockImplementation(async (password: string, hashedPassword: string): Promise<boolean> => {
-        return true; // Simulate correct password
+        return true;
       });
-      mockJwtService.sign.mockReturnValue('token'); // Mock JWT sign to return a token
+      mockJwtService.sign.mockReturnValue('token');
 
       const result = await authService.login(loginDto.email, loginDto.password);
       expect(result).toEqual({
@@ -106,7 +106,7 @@ describe('AuthService', () => {
       const loginDto = { email: user.email, password: 'wrongpassword' };
       mockUsersService.findByEmail.mockResolvedValue(user);
       jest.spyOn(bcrypt, 'compare').mockImplementation(async (password: string, hashedPassword: string): Promise<boolean> => {
-        return false; // Simulate incorrect password
+        return false;
       });
 
       await expect(authService.login(loginDto.email, loginDto.password)).rejects.toThrow('Invalid credentials');

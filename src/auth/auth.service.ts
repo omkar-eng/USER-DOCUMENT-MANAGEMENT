@@ -31,13 +31,11 @@ export class AuthService {
     throw new Error('Invalid credentials');
   }
 
-  // Method to add a token to the blacklist
   async addBlacklistToken(token: string): Promise<void> {
     const blackListedToken = this.blackListedRepository.create({ token });
     this.blackListedRepository.save(blackListedToken);
   }
 
-  // Method to check if the token is blacklisted
   async isTokenBlacklisted(token: string): Promise<boolean> {
     const blacklistedToken = await this.blackListedRepository.findOne({ where: { token } });
     return !!blacklistedToken;

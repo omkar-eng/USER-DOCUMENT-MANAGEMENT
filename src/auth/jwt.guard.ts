@@ -2,7 +2,6 @@ import { ExecutionContext, Injectable, UnauthorizedException } from '@nestjs/com
 import { Reflector } from '@nestjs/core';
 import { AuthGuard } from '@nestjs/passport';
 import { AuthPayload } from './auth.interface';
-import { AuthService } from './auth.service';
 
 @Injectable()
 export class JwtAuthGuard extends AuthGuard('jwt') {
@@ -14,21 +13,18 @@ export class JwtAuthGuard extends AuthGuard('jwt') {
   ): Promise<boolean> {
 
     const request = context.switchToHttp().getRequest();
-    // Call the parent canActivate method to validate the JWT
     const isAuthenticated = await super.canActivate(context);
     if (!isAuthenticated) {
       throw new UnauthorizedException('Invalid access token');
     }
 
-    // Proceed to role validation if JWT is valid
-    const user: AuthPayload = request.user; // Get user from request
+    const user: AuthPayload = request.user;
     const requiredRoles = this.reflector.get<string[]>('roles', context.getHandler());
 
     if (!requiredRoles) {
-      return true; // If no roles are required, allow access
+      return true;
     }
 
-    // Check if user has required roles
     return requiredRoles.includes(user.role);
   }
 }

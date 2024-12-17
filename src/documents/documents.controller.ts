@@ -17,7 +17,7 @@ import {
   import { Document } from './documents.entity';
   import { FileInterceptor } from '@nestjs/platform-express';
   import { diskStorage } from 'multer';
-  import { extname, join } from 'path';
+  import { extname } from 'path';
   import { CreateDocumentDto } from '../dto/create-document.dto';
   import { UpdateDocumentDto } from '../dto/update-document.dto';
   import { Response } from 'express';

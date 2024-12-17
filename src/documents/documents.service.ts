@@ -2,9 +2,7 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { CreateDocumentDto } from '../dto/create-document.dto';
 import {Document} from './documents.entity'
-import { UpdateDocumentDto } from '../dto/update-document.dto';
 
 @Injectable()
 export class DocumentsService {
