@@ -67,18 +67,28 @@ remove(id): Delete a specific document by ID.
 
 
 --------------------------------------------------------------------------------------------------------------------------------------------
-Security:
+Security:\
 Data Encryption: All sensitive data, like user passwords should be encrypted.\
 Rate Limiting: Protects against brute-force attacks and abuse of the API.
 
-Authentication:
+Authentication:\
 User Authentication: Users should be authenticated using a secure authentication mechanism, by JSON Web Tokens (JWT).\
 Password Hashing: User passwords should be hashed using a secure password hashing algorithm, by bcrypt.
 
-Authorization:
+Authorization:\
 Role-Based Access Control: Access to sensitive data and functionality should be restricted to authorized users and roles.
 
 
-Debugging:
+Debugging:\
 Error Handling: Errors should be handled and logged to prevent sensitive information from being exposed.\
 Loggers: To monitor application performance and health in real-time.
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+Scripts:\
+Run project in watch mode - npm run start:dev\
+Run project - npm run start:dev\
+Run test - npm run test\
+Run seed to add dummy data in DB- npx ts-node src/seed.ts\
+
